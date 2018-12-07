@@ -1,28 +1,27 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import { Route, Link } from "react-router-dom"
+import './App.css'
+import HomePage from './pages/HomePage'
+import UserProfilePage from './pages/UserProfilePage'
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    );
+class App extends React.Component {
+  state = {
+    profilelinks:[]
   }
-}
+  render(){
+    return(
+  <div>
+        {/* We temporarily hardcode this to user id 1  */}
+        <Link to="/">Home</Link>
+        <Link to="/user/1" id="profilepage">My Profile</Link>
+        <Route exact path="/" component={HomePage} ></Route>
+        <Route path="/user/:id" component={UserProfilePage} ></Route>
+        
+        <br/>
+    <HomePage/>
 
-export default App;
+  </div>
+  )
+}
+}
+export default App
